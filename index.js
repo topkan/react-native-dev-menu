@@ -22,10 +22,10 @@ let DevMenu: RNDevMenuModule = {
     if (!this._eventHandlers) {
       this._eventHandlers = new Map();
     }
-
+    const itemDefined = this._eventHandlers.has(name);
     this._eventHandlers.set(name, handler);
 
-    if (!this._eventEmitter) {
+    if (!this._eventEmitter && !itemDefined) {
       this._eventEmitter = new NativeEventEmitter(RNDevMenu);
 
       this._eventEmitter.addListener('customDevOptionTap', (name: string) => {
